@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+
+<title>Invitație</title>
+
+<style>
+body {margin:0;font-family:Montserrat;}
+section {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+}
+
+#acasa {
+  background-size:cover;
+  background-position:center;
+}
+
+#acasa h1 {
+  font-family:'Great Vibes';
+  font-size:70px;
+}
+
+#acasa p {font-size:20px;}
+
+#locatie {
+  background:#111;
+  padding:40px;
+}
+
+form {
+  background:#222;
+  padding:20px;
+  border-radius:15px;
+}
+input,button {
+  width:100%;
+  margin:10px 0;
+  padding:10px;
+  border:none;
+}
+button {
+  background:#444;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<section id="acasa">
+  <div>
+    <h1 id="nume"></h1>
+    <p id="data"></p>
+    <p id="mesaj"></p>
+  </div>
+</section>
+
+<section id="locatie">
+  <h2>Eveniment</h2>
+  <p id="biserica"></p>
+  <p id="restaurant"></p>
+</section>
+
+<section>
+  <form>
+    <input placeholder="Nume">
+    <button>Confirmă</button>
+  </form>
+</section>
+
+<script>
+const DATA = {
+  nume: "Oana & Cosmin",
+  data: "05 Septembrie 2026",
+  ora: "20:00",
+  mesaj: "Cu inimile pline de bucurie, vă invităm să fiți alături de noi.",
+  biserica: "Nașterea Sfântului Ioan Botezătorul - Focșani",
+  restaurant: "Pensiunea Sara Focșani",
+  poza: "images/acasa.jpg"
+};
+
+document.getElementById("nume").innerText = DATA.nume;
+document.getElementById("data").innerText = DATA.data + " - " + DATA.ora;
+document.getElementById("mesaj").innerText = DATA.mesaj;
+document.getElementById("biserica").innerText = DATA.biserica;
+document.getElementById("restaurant").innerText = DATA.restaurant;
+
+document.getElementById("acasa").style.backgroundImage =
+  "url('" + DATA.poza + "')";
+</script>
+
+</body>
+</html>
