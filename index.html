@@ -4,11 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Oana & Cosmin</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+<title>Numea(EA)& Nume(EL)</title>
 
 <style>
+  h1, h2 {
+  font-family: 'Great Vibes', cursive;
+}
+
+p {
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 html, body {
   margin:0;
   padding:0;
@@ -132,6 +141,14 @@ button {
   #acasa h1{font-size:50px;}
   .cine h2{font-size:40px;}
 }
+
+#countdown {
+  margin-top:25px;
+  font-size:24px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+  
 </style>
 </head>
 
@@ -146,9 +163,31 @@ button {
 
 <section id="acasa">
   <div class="fade">
-    <h1>Oana & Cosmin</h1>
-    <p>05 Septembrie 2026 • Ora 20:00</p>
-  </div>
+    <h1>Nume(EA) & Nume(EL)</h1>
+    <p>05 Septembrie 2080 • Ora 20:00</p>
+  </div
+    <div id="countdown"></div
+    <script>
+      const target = new Date("2026-09-05T20:00:00").getTime();
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = target - now;
+
+  if(diff <= 0){
+    document.getElementById("countdown").innerHTML = "Astăzi este ziua noastră ❤️";
+    return;
+  }
+
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+
+  document.getElementById("countdown").innerHTML =
+    d+" zile "+h+" ore "+m+" min "+s+" sec";
+},1000);
+    </script>                      
 </section>
 
 <section id="cine">
@@ -193,5 +232,64 @@ window.addEventListener("scroll",()=>{
 });
 </script>
 
+  <form id="rsvpForm">
+
+<input id="nume" placeholder="Nume și prenume" required>
+
+<select id="participare" required>
+  <option value="">Participare</option>
+  <option value="Particip">Particip</option>
+  <option value="Nu">Nu particip</option>
+</select>
+
+<select id="persoane" required>
+  <option value="">Număr persoane</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
+
+<select id="meniu_normal">
+  <option value="0">Meniu normal</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
+
+<select id="meniu_copii">
+  <option value="0">Meniu copii</option>
+  <option value="1">1</option>
+</select>
+
+<select id="meniu_vegan">
+  <option value="0">Meniu vegan</option>
+  <option value="1">1</option>
+</select>
+
+<button>Trimite</button>
+
+</form>
+
 </body>
+  <script>
+    document.getElementById("rsvpForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  let persoane = parseInt(persoane.value);
+  let totalMeniuri =
+    parseInt(meniu_normal.value) +
+    parseInt(meniu_copii.value) +
+    parseInt(meniu_vegan.value);
+
+  if(!persoane){
+    alert("Selectați numărul de persoane");
+    return;
+  }
+
+  if(totalMeniuri !== persoane){
+    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
+    return;
+  }
+
+  alert("Trimis!");
+});
+  </script>
 </html>
