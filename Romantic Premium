@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Oana & Cosmin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+  margin:0;
+  padding:0;
+  font-family:Montserrat;
+  scroll-behavior:smooth;
+}
+
+/* NAV */
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  text-align:center;
+  padding:10px;
+  z-index:1000;
+}
+nav a {
+  color:#fff;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* SECTIONS */
+section {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  padding:100px 20px;
+}
+
+/* HERO */
+#acasa {
+  background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+              url("images/acasa.jpg") center/cover no-repeat;
+}
+
+#acasa h1 {
+  font-family:'Great Vibes';
+  font-size:80px;
+  margin:0;
+}
+
+#acasa p {
+  font-size:22px;
+  margin-top:10px;
+}
+
+/* FADE EFFECT */
+.fade {
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CINE */
+#cine {
+  background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+              url("images/cine.jpg") center/cover no-repeat;
+}
+
+.cine h2 {
+  font-family:'Great Vibes';
+  font-size:60px;
+}
+
+/* UNDE */
+#unde {
+  background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+              url("images/unde.jpg") center/cover no-repeat;
+}
+
+.locatie-btn {
+  margin-top:20px;
+  padding:12px 30px;
+  background:#8fbfa3;
+  border-radius:30px;
+  text-decoration:none;
+  color:#000;
+  font-weight:700;
+}
+
+/* CONFIRMARE */
+#confirmare {
+  background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+              url("images/confirmare.jpg") center/cover no-repeat;
+}
+
+form {
+  background:rgba(0,0,0,.7);
+  padding:25px;
+  border-radius:20px;
+  max-width:400px;
+  width:100%;
+}
+
+input, select, button {
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+}
+
+button {
+  background:#222;
+  color:#fff;
+  font-weight:700;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  #acasa h1{font-size:50px;}
+  .cine h2{font-size:40px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#acasa">Acasă</a>
+  <a href="#cine">Cine</a>
+  <a href="#unde">Unde</a>
+  <a href="#confirmare">Confirmare</a>
+</nav>
+
+<section id="acasa">
+  <div class="fade">
+    <h1>Oana & Cosmin</h1>
+    <p>05 Septembrie 2026 • Ora 20:00</p>
+  </div>
+</section>
+
+<section id="cine">
+  <div class="fade">
+    <h2>Povestea noastră</h2>
+    <p>
+      Dragostea noastră este ca un roman nescris,<br>
+      iar astăzi începem primul capitol împreună.
+    </p>
+  </div>
+</section>
+
+<section id="unde">
+  <div class="fade">
+    <h2>Evenimentele noastre</h2>
+    <p>Biserica – Nașterea Sfântului Ioan Botezătorul</p>
+    <p>Pensiunea Sara Focșani</p>
+
+    <a class="locatie-btn" href="#">Vezi pe hartă</a>
+  </div>
+</section>
+
+<section id="confirmare">
+  <div class="fade">
+    <h2>Confirmare</h2>
+    <form>
+      <input placeholder="Nume">
+      <button>Trimite</button>
+    </form>
+  </div>
+</section>
+
+<script>
+const f=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+  f.forEach(el=>{
+    const t=el.getBoundingClientRect().top;
+    if(t<window.innerHeight-100){
+      el.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
