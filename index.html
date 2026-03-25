@@ -222,75 +222,163 @@ setInterval(()=>{
 </section>
 
 <script>
-const f=document.querySelectorAll(".fade");
-window.addEventListener("scroll",()=>{
-  f.forEach(el=>{
-    const t=el.getBoundingClientRect().top;
-    if(t<window.innerHeight-100){
-      el.classList.add("show");
+/* BLOCARE DUPĂ TRIMITERE */
+if (localStorage.getItem("rsvpTrimis")) {
+  document.getElementById("rsvpForm").innerHTML =
+    "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost deja trimisă.</p>";
+}
+
+
+
+  
+// CONTROL PARTICIPARE – VARIANTA FINALĂ
+const participareSelect = document.getElementById("participare");
+const detalii = document.getElementById("detaliiParticipare");
+const mesajDans = document.getElementById("mesajDans");
+  
+  participareSelect.addEventListener("change", () => {
+    
+    if (participareSelect.value === "Nu pot participa") {
+      detalii.style.display = "none";
+      mesajDans.style.display = "none";
+    } else {
+      detalii.style.display = "block"; 
+      mesajDans.style.display = "block"
     }
   });
-});
-</script>
 
-  <form id="rsvpForm">
 
-<input id="nume" placeholder="Nume și prenume" required>
 
-<select id="participare" required>
-  <option value="">Participare</option>
-  <option value="Particip">Particip</option>
-  <option value="Nu">Nu particip</option>
-</select>
 
-<select id="persoane" required>
-  <option value="">Număr persoane</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>
 
-<select id="meniu_normal">
-  <option value="0">Meniu normal</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>
 
-<select id="meniu_copii">
-  <option value="0">Meniu copii</option>
-  <option value="1">1</option>
-</select>
 
-<select id="meniu_vegan">
-  <option value="0">Meniu vegan</option>
-  <option value="1">1</option>
-</select>
+  
 
-<button>Trimite</button>
 
-</form>
-   <script>
-    document.getElementById("rsvpForm").addEventListener("submit",function(e){
+/* MESAJ EROARE (creat o singură dată) */
+let errorBox = document.createElement("div");
+errorBox.id = "formError";
+errorBox.style.color = "#7a1d1d";
+errorBox.style.background = "#fdeaea";
+errorBox.style.border = "1px solid #e0b4b4";
+errorBox.style.padding = "12px";
+errorBox.style.borderRadius = "10px";
+errorBox.style.fontWeight = "700";
+errorBox.style.marginBottom = "15px";
+errorBox.style.display = "none";
+
+const form = document.getElementById("rsvpForm");
+form.parentNode.insertBefore(errorBox, form);
+
+
+
+  
+
+/* SUBMIT */
+form.addEventListener("submit", function(e){
   e.preventDefault();
 
-  let persoane = parseInt(persoane.value);
-  let totalMeniuri =
-    parseInt(meniu_normal.value) +
-    parseInt(meniu_copii.value) +
-    parseInt(meniu_vegan.value);
+  // reset eroare
+  errorBox.style.display = "none";
+  errorBox.innerText = "";
 
-  if(!persoane){
-    alert("Selectați numărul de persoane");
-    return;
-  }
+  const participare = document.getElementById("participare").value;
 
-  if(totalMeniuri !== persoane){
-    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
-    return;
-  }
+  // 🔴 CAZ: NU POT PARTICIPA
+  if (participare === "Nu pot participa") {
+    const data = {
+      nume: document.getElementById("nume").value,
+      participare: participare,
+      persoane: 0,
+      meniu_normal: 0,
+      meniu_copii: 0,
+      meniu_vegan: 0
+    };
 
-  alert("Trimis!");
+    fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data)
 });
-  </script>
+
+
+  localStorage.setItem("rsvpTrimis", "da");
+  rsvpForm.innerHTML =
+    "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
+    return; // OPRIM aici
+
+}
+
+  // 🟢 CAZ: PARTICIPĂ
+  const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
+  const normalVal  = parseInt(document.getElementById("meniu_normal").value, 10);
+  const copiiVal   = parseInt(document.getElementById("meniu_copii").value, 10);
+  const veganVal   = parseInt(document.getElementById("meniu_vegan").value, 10);
+
+  const totalMeniuri = normalVal + copiiVal + veganVal;
+
+  /* VALIDARE 1: persoane */
+  if (!persoaneVal || persoaneVal === 0) {
+    errorBox.innerText = "Vă rugăm să selectați numărul de persoane.";
+    errorBox.style.display = "block";
+    document.getElementById("persoane").focus();
+    return;
+  }
+
+  /* VALIDARE 2: meniuri lipsă */
+  if (totalMeniuri === 0) {
+    errorBox.innerText =
+      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
+    errorBox.style.display = "block";
+    document.getElementById("meniu_normal").focus();
+    return;
+  }
+
+  /* VALIDARE 3: meniuri ≠ persoane */
+  if (totalMeniuri !== persoaneVal) {
+    errorBox.innerText =
+      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
+    errorBox.style.display = "block";
+    document.getElementById("meniu_normal").focus();
+    return;
+  }
+
+  /* TOTUL E OK → TRIMITERE */
+  const data = {
+    nume: document.getElementById("nume").value,
+    participare: document.getElementById("participare").value,
+    persoane: persoaneVal,
+    meniu_normal: normalVal,
+    meniu_copii: copiiVal,
+    meniu_vegan: veganVal
+  };
+
+
+  
+  fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+
+  localStorage.setItem("rsvpTrimis", "da");
+  rsvpForm.innerHTML = "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost trimisă.</p>";
+});
+
+/* COUNTDOWN */
+const target = new Date("2026-09-05T20:00:00").getTime();
+setInterval(()=>{
+  const d = target - new Date().getTime();
+  if (d <= 0) return countdown.innerHTML = "Astăzi este ziua noastră ❤️";
+  countdown.innerHTML =
+    Math.floor(d/86400000)+" zile "+
+    Math.floor(d%86400000/3600000)+" ore "+
+    Math.floor(d%3600000/60000)+" minute "+
+    Math.floor(d%60000/1000)+" secunde";
+},1000);
+</script>
 
 </body>
  
