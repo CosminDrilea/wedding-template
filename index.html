@@ -1,28 +1,19 @@
-<!DOCTYPE html> /* Romantic Premium */
+<!DOCTYPE html>
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Numea(EA)& Nume(EL)</title>
+<title>Oana & Cosmin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
 
 <style>
-  h1, h2 {
-  font-family: 'Great Vibes', cursive;
-}
-
-p {
-  font-family: 'Playfair Display', serif;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-}
 html, body {
   margin:0;
   padding:0;
-  font-family:Montserrat;
   scroll-behavior:smooth;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* NAV */
@@ -32,12 +23,12 @@ nav {
   width:100%;
   background:rgba(0,0,0,0.6);
   text-align:center;
-  padding:10px;
+  padding:12px;
   z-index:1000;
 }
 nav a {
   color:#fff;
-  margin:0 10px;
+  margin:0 15px;
   text-decoration:none;
   font-weight:600;
 }
@@ -50,54 +41,56 @@ section {
   justify-content:center;
   text-align:center;
   color:#fff;
-  padding:100px 20px;
+  padding:120px 20px;
 }
 
-/* HERO */
+/* BACKGROUNDS */
 #acasa {
   background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
               url("images/acasa.jpg") center/cover no-repeat;
 }
 
-#acasa h1 {
-  font-family:'Great Vibes';
-  font-size:80px;
-  margin:0;
-}
-
-#acasa p {
-  font-size:22px;
-  margin-top:10px;
-}
-
-/* FADE EFFECT */
-.fade {
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s;
-}
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* CINE */
 #cine {
   background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
               url("images/cine.jpg") center/cover no-repeat;
 }
 
-.cine h2 {
-  font-family:'Great Vibes';
-  font-size:60px;
-}
-
-/* UNDE */
 #unde {
   background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
               url("images/unde.jpg") center/cover no-repeat;
 }
 
+#confirmare {
+  background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+              url("images/confirmare.jpg") center/cover no-repeat;
+}
+
+/* TEXT */
+h1, h2 {
+  font-family: 'Great Vibes', cursive;
+}
+
+h1 {
+  font-size:80px;
+}
+
+h2 {
+  font-size:50px;
+}
+
+p {
+  font-family: 'Playfair Display', serif;
+  font-size:20px;
+}
+
+/* COUNTDOWN */
+#countdown {
+  margin-top:20px;
+  font-size:22px;
+  font-weight:600;
+}
+
+/* BUTTON */
 .locatie-btn {
   margin-top:20px;
   padding:12px 30px;
@@ -108,12 +101,7 @@ section {
   font-weight:700;
 }
 
-/* CONFIRMARE */
-#confirmare {
-  background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-              url("images/confirmare.jpg") center/cover no-repeat;
-}
-
+/* FORM */
 form {
   background:rgba(0,0,0,.7);
   padding:25px;
@@ -138,17 +126,10 @@ button {
 
 /* MOBILE */
 @media(max-width:768px){
-  #acasa h1{font-size:50px;}
-  .cine h2{font-size:40px;}
+  h1{font-size:50px;}
+  h2{font-size:36px;}
+  p{font-size:16px;}
 }
-
-#countdown {
-  margin-top:25px;
-  font-size:24px;
-  font-weight:600;
-  letter-spacing:1px;
-}
-  
 </style>
 </head>
 
@@ -161,14 +142,86 @@ button {
   <a href="#confirmare">Confirmare</a>
 </nav>
 
+<!-- ACASA -->
 <section id="acasa">
-  <div class="fade">
-    <h1>Nume(EA) & Nume(EL)</h1>
-    <p>05 Septembrie 2080 • Ora 20:00</p>
-  </div
-  
-    <script>
-      const target = new Date("2026-09-05T20:00:00").getTime();
+  <div>
+    <h1>Oana & Cosmin</h1>
+    <p>05 Septembrie 2026 • Ora 20:00</p>
+    <div id="countdown"></div>
+  </div>
+</section>
+
+<!-- CINE -->
+<section id="cine">
+  <div>
+    <h2>Povestea noastră</h2>
+    <p>
+      Dragostea noastră este ca un roman nescris,<br>
+      iar astăzi începem primul capitol împreună.
+    </p>
+  </div>
+</section>
+
+<!-- UNDE -->
+<section id="unde">
+  <div>
+    <h2>Evenimentele noastre</h2>
+    <p>Biserica – Nașterea Sfântului Ioan Botezătorul</p>
+    <p>Pensiunea Sara Focșani</p>
+
+    <a class="locatie-btn" href="#" target="_blank">Vezi pe hartă</a>
+  </div>
+</section>
+
+<!-- CONFIRMARE -->
+<section id="confirmare">
+  <div>
+    <h2>Confirmare prezență</h2>
+
+    <form id="rsvpForm">
+
+      <input id="nume" placeholder="Nume și prenume" required>
+
+      <select id="participare" required>
+        <option value="">Participare</option>
+        <option value="Particip">Particip</option>
+        <option value="Nu">Nu particip</option>
+      </select>
+
+      <select id="persoane" required>
+        <option value="">Număr persoane</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <select id="meniu_normal">
+        <option value="0">Meniu normal</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+
+      <select id="meniu_copii">
+        <option value="0">Meniu copii</option>
+        <option value="1">1</option>
+      </select>
+
+      <select id="meniu_vegan">
+        <option value="0">Meniu vegan</option>
+        <option value="1">1</option>
+      </select>
+
+      <button type="submit">Trimite</button>
+
+    </form>
+
+  </div>
+</section>
+
+<script>
+
+/* COUNTDOWN */
+const target = new Date("2026-09-05T20:00:00").getTime();
 
 setInterval(()=>{
   const now = new Date().getTime();
@@ -187,199 +240,32 @@ setInterval(()=>{
   document.getElementById("countdown").innerHTML =
     d+" zile "+h+" ore "+m+" min "+s+" sec";
 },1000);
-    </script> 
-      
-</section>
-
-<section id="cine">
-  <div class="fade">
-    <h2>Povestea noastră</h2>
-    <p>
-      Dragostea noastră este ca un roman nescris,<br>
-      iar astăzi începem primul capitol împreună.
-    </p>
-  </div>
-</section>
-
-<section id="unde">
-  <div class="fade">
-    <h2>Evenimentele noastre</h2>
-    <p>Biserica – Nașterea Sfântului Ioan Botezătorul</p>
-    <p>Pensiunea Sara Focșani</p>
-
-    <a class="locatie-btn" href="#">Vezi pe hartă</a>
-  </div>
-</section>
-
-<section id="confirmare">
-  <div class="fade">
-    <h2>Confirmare</h2>
-    <form>
-      <input placeholder="Nume">
-      <button>Trimite</button>
-    </form>
-  </div>
-</section>
-
-<script>
-/* BLOCARE DUPĂ TRIMITERE */
-if (localStorage.getItem("rsvpTrimis")) {
-  document.getElementById("rsvpForm").innerHTML =
-    "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost deja trimisă.</p>";
-}
 
 
-
-  
-// CONTROL PARTICIPARE – VARIANTA FINALĂ
-const participareSelect = document.getElementById("participare");
-const detalii = document.getElementById("detaliiParticipare");
-const mesajDans = document.getElementById("mesajDans");
-  
-  participareSelect.addEventListener("change", () => {
-    
-    if (participareSelect.value === "Nu pot participa") {
-      detalii.style.display = "none";
-      mesajDans.style.display = "none";
-    } else {
-      detalii.style.display = "block"; 
-      mesajDans.style.display = "block"
-    }
-  });
-
-
-
-
-
-
-
-  
-
-
-/* MESAJ EROARE (creat o singură dată) */
-let errorBox = document.createElement("div");
-errorBox.id = "formError";
-errorBox.style.color = "#7a1d1d";
-errorBox.style.background = "#fdeaea";
-errorBox.style.border = "1px solid #e0b4b4";
-errorBox.style.padding = "12px";
-errorBox.style.borderRadius = "10px";
-errorBox.style.fontWeight = "700";
-errorBox.style.marginBottom = "15px";
-errorBox.style.display = "none";
-
-const form = document.getElementById("rsvpForm");
-form.parentNode.insertBefore(errorBox, form);
-
-
-
-  
-
-/* SUBMIT */
-form.addEventListener("submit", function(e){
+/* VALIDARE FORM */
+document.getElementById("rsvpForm").addEventListener("submit",function(e){
   e.preventDefault();
 
-  // reset eroare
-  errorBox.style.display = "none";
-  errorBox.innerText = "";
+  let persoane = parseInt(document.getElementById("persoane").value);
+  let total =
+    parseInt(document.getElementById("meniu_normal").value) +
+    parseInt(document.getElementById("meniu_copii").value) +
+    parseInt(document.getElementById("meniu_vegan").value);
 
-  const participare = document.getElementById("participare").value;
+  if(!persoane){
+    alert("Selectați numărul de persoane");
+    return;
+  }
 
-  // 🔴 CAZ: NU POT PARTICIPA
-  if (participare === "Nu pot participa") {
-    const data = {
-      nume: document.getElementById("nume").value,
-      participare: participare,
-      persoane: 0,
-      meniu_normal: 0,
-      meniu_copii: 0,
-      meniu_vegan: 0
-    };
+  if(total !== persoane){
+    alert("Numărul de meniuri trebuie să fie egal cu numărul de persoane.");
+    return;
+  }
 
-    fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data)
+  alert("Confirmare trimisă!");
 });
 
-
-  localStorage.setItem("rsvpTrimis", "da");
-  rsvpForm.innerHTML =
-    "<h3>Vă mulțumim 🤍</h3><p>Ne pare rău că nu veți putea fi alături de noi.</p>";
-    return; // OPRIM aici
-
-}
-
-  // 🟢 CAZ: PARTICIPĂ
-  const persoaneVal = parseInt(document.getElementById("persoane").value, 10);
-  const normalVal  = parseInt(document.getElementById("meniu_normal").value, 10);
-  const copiiVal   = parseInt(document.getElementById("meniu_copii").value, 10);
-  const veganVal   = parseInt(document.getElementById("meniu_vegan").value, 10);
-
-  const totalMeniuri = normalVal + copiiVal + veganVal;
-
-  /* VALIDARE 1: persoane */
-  if (!persoaneVal || persoaneVal === 0) {
-    errorBox.innerText = "Vă rugăm să selectați numărul de persoane.";
-    errorBox.style.display = "block";
-    document.getElementById("persoane").focus();
-    return;
-  }
-
-  /* VALIDARE 2: meniuri lipsă */
-  if (totalMeniuri === 0) {
-    errorBox.innerText =
-      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
-    errorBox.style.display = "block";
-    document.getElementById("meniu_normal").focus();
-    return;
-  }
-
-  /* VALIDARE 3: meniuri ≠ persoane */
-  if (totalMeniuri !== persoaneVal) {
-    errorBox.innerText =
-      "Numărul de meniuri trebuie să fie egal cu numărul de persoane. Vă rugăm să selectați tipul de meniu.";
-    errorBox.style.display = "block";
-    document.getElementById("meniu_normal").focus();
-    return;
-  }
-
-  /* TOTUL E OK → TRIMITERE */
-  const data = {
-    nume: document.getElementById("nume").value,
-    participare: document.getElementById("participare").value,
-    persoane: persoaneVal,
-    meniu_normal: normalVal,
-    meniu_copii: copiiVal,
-    meniu_vegan: veganVal
-  };
-
-
-  
-  fetch("https://script.google.com/macros/s/AKfycbxeiVNPp-AzzJN1yzJb5iZgms_w9N2hpnitYSVHMdwOuU1i4YsOE76rUyFpTYxM0A_wRw/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
-  });
-
-  localStorage.setItem("rsvpTrimis", "da");
-  rsvpForm.innerHTML = "<h3>Mulțumim ❤️</h3><p>Confirmarea a fost trimisă.</p>";
-});
-
-/* COUNTDOWN */
-const target = new Date("2026-09-05T20:00:00").getTime();
-setInterval(()=>{
-  const d = target - new Date().getTime();
-  if (d <= 0) return countdown.innerHTML = "Astăzi este ziua noastră ❤️";
-  countdown.innerHTML =
-    Math.floor(d/86400000)+" zile "+
-    Math.floor(d%86400000/3600000)+" ore "+
-    Math.floor(d%3600000/60000)+" minute "+
-    Math.floor(d%60000/1000)+" secunde";
-},1000);
 </script>
 
 </body>
- 
 </html>
