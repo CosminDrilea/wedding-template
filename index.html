@@ -61,6 +61,7 @@ section {
 }
 
 #confirmare {
+  position: relative;
   background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
               url("images/confirmare.jpg") center/cover no-repeat;
 }
@@ -131,11 +132,13 @@ button {
   p{font-size:16px;}
 }
   .watermark{
-  margin-top:40px;
-  text-align:center;
-  font-size:12px;
-  letter-spacing:1px;
-  color:rgba(255,255,255,0.65);
+  position:absolute;
+  right:20px;
+  bottom:20px;
+
+  font-size:11px;
+  color:rgba(255,255,255,0.55);
+
   font-family:'Montserrat', sans-serif;
 }
   
@@ -224,6 +227,9 @@ button {
 
     </form>
 
+  </div>
+   <div class="watermark">
+    © Design și concept · Cosmin Drilea
   </div>
 </section>
 
